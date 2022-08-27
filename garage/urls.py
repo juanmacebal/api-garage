@@ -7,6 +7,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('v1/users/', include('users.urls')),
+    path('v1/', include('services.urls')),
 ]
 
 # Swagger
