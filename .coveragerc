@@ -1,0 +1,28 @@
+[run]
+omit =
+    *tests*
+    *apps.py
+    *manage.py
+    *__init__.py
+    *migrations*
+    *asgi*
+    *wsgi*
+    *admin.py
+    *urls.py
+    */settings/*
+
+[report]
+omit =
+    *tests*
+    *apps.py
+    *manage.py
+    *__init__.py
+    *migrations*
+    *asgi*
+    *wsgi*
+    *admin.py
+    *urls.py
+    */settings/*
+
+fail_under = 80
+show_missing = True

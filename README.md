@@ -29,3 +29,12 @@ Update the container
 - Oficial DRF documentation [django-rest-framework.org](https://www.django-rest-framework.org/) 
 - Detailed descriptions, with full methods and attributes [cdrf.com](https://www.cdrf.co/)
 - Effectively Using Django REST Framework Serializers [testdriven.io/blog/drf-serializers](https://testdriven.io/blog/drf-serializers/)
+
+
+## Tests
+
+Run the tests checking the coverage and generate a html report.
+
+`coverage run --source='.' manage.py test && coverage html`
+
+Look your test report in `/htmlcov/index.html`
