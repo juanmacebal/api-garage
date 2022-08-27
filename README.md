@@ -1,5 +1,5 @@
 # API Garage
-This project create a simple API for a garage just for learning purpose, using:
+This project create a simple API for a garage just for learning purpose, using Django + Django Rest Framework and the following packages:
 - Auth JWT with [djangorestframework-simplejwt](https://github.com/jazzband/djangorestframework-simplejwt)
 - Query filters with [django-filter](https://github.com/carltongibson/django-filter)
 - Swagger with [drf-spectacular](https://github.com/tfranzel/drf-spectacular)
@@ -24,6 +24,7 @@ Update the container
 
 ```docker-compose build```
 
+After that restart your container
 ## Extra documentation
 - Oficial Django documentation [docs.djangoproject.com](https://docs.djangoproject.com/en/4.1/) 
 - Oficial DRF documentation [django-rest-framework.org](https://www.django-rest-framework.org/) 
@@ -34,6 +35,8 @@ Update the container
 ## Tests
 
 Run the tests checking the coverage and generate a html report.
+
+Open the web container terminal and run:
 
 `coverage run --source='.' manage.py test && coverage html`
 
