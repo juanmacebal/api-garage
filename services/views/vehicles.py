@@ -1,10 +1,12 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from drf_spectacular.utils import extend_schema, extend_schema_view
+from django_filters.rest_framework import DjangoFilterBackend
 
 from services.models import Vehicle
 from services.serializers import VehiclesSerializer, VehiclesResponseSerializer
 from garage.permissions import DeleteOnlyByAdmin
+from garage.filters import OrderingFilterBackend, SearchFilterBackend
 
 
 @extend_schema_view(
@@ -46,6 +48,32 @@ class VehiclesView(ModelViewSet):
         )  # noqa
     serializer_class = VehiclesSerializer
     permission_classes = [IsAuthenticated, DeleteOnlyByAdmin]
+    filter_backends = [
+        DjangoFilterBackend,
+        SearchFilterBackend,
+        OrderingFilterBackend
+    ]
+    filterset_fields = [
+        'type',
+        'brand',
+        'model'
+    ]
+    search_fields = [
+        'type',
+        'brand',
+        'model',
+        'license_plate',
+        'year',
+        'client__last_name',
+        'client__first_name',
+    ]
+    ordering_fields = [
+        'id',
+        'type',
+        'brand',
+        'model',
+        'year'
+    ]
 
     def get_serializer_class(self):
         if self.action in ['list', 'retrieve']:
