@@ -5,6 +5,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 from services.serializers import ClientsSerializer
 from services.models import Client
 from garage.permissions import DeleteOnlyByAdmin
+from garage.filters import OrderingFilterBackend, SearchFilterBackend
 
 
 @extend_schema_view(
@@ -35,6 +36,20 @@ class ClientsView(ModelViewSet):
     permission_classes = [
         IsAuthenticated,
         DeleteOnlyByAdmin
+    ]
+    filter_backends = [
+        SearchFilterBackend,
+        OrderingFilterBackend
+    ]
+    search_fields = [
+        'last_name',
+        'first_name',
+        'email'
+    ]
+    ordering_fields = [
+        'id',
+        'last_name',
+        'is_active'
     ]
 
     def perform_create(self, serializer):

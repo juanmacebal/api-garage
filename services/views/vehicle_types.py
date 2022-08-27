@@ -5,6 +5,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 from services.models import Type
 from services.serializers import VehicleTypeSerializer
 from garage.permissions import DeleteOnlyByAdmin
+from garage.filters import OrderingFilterBackend, SearchFilterBackend
 
 
 @extend_schema_view(
@@ -35,4 +36,15 @@ class VehicleTypesView(ModelViewSet):
     permission_classes = [
         IsAuthenticated,
         DeleteOnlyByAdmin
+    ]
+    filter_backends = [
+        SearchFilterBackend,
+        OrderingFilterBackend
+    ]
+    search_fields = [
+        'name'
+    ]
+    ordering_fields = [
+        'id',
+        'name'
     ]

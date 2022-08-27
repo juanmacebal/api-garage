@@ -5,6 +5,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 from services.models import Brand
 from services.serializers import BrandSerializer
 from garage.permissions import DeleteOnlyByAdmin
+from garage.filters import SearchFilterBackend, OrderingFilterBackend
 
 
 @extend_schema_view(
@@ -35,4 +36,15 @@ class BrandsView(ModelViewSet):
     permission_classes = [
         IsAuthenticated,
         DeleteOnlyByAdmin
+    ]
+    filter_backends = [
+        SearchFilterBackend,
+        OrderingFilterBackend
+    ]
+    search_fields = [
+        'name'
+    ]
+    ordering_fields = [
+        'id',
+        'name'
     ]

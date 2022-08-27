@@ -1,10 +1,12 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from drf_spectacular.utils import extend_schema, extend_schema_view
+from django_filters.rest_framework import DjangoFilterBackend
 
 from services.models import Service
 from services.serializers import ServiceSerializer, ServiceResponseSerializer
 from garage.permissions import DeleteOnlyByAdmin
+from garage.filters import OrderingFilterBackend, SearchFilterBackend
 
 
 @extend_schema_view(
@@ -46,6 +48,27 @@ class ServicesView(ModelViewSet):
     permission_classes = [
         IsAuthenticated,
         DeleteOnlyByAdmin
+    ]
+    filter_backends = [
+        DjangoFilterBackend,
+        SearchFilterBackend,
+        OrderingFilterBackend,
+    ]
+    filterset_fields = [
+        'vehicle',
+        'is_paid',
+    ]
+    search_fields = [
+        'vehicle__client__last_name',
+        'vehicle__client__first_name',
+    ]
+    ordering_fields = [
+        'id',
+        'vehicle',
+        'is_paid',
+        'start_at',
+        'finish_at',
+        'vehicle__client__last_name',
     ]
 
     def get_queryset(self):
