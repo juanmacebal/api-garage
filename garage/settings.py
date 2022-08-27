@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
 LOCAL_APPS = [
     'users',
+    'services',
 ]
 
 THIRD_PARTY_APPS = [
