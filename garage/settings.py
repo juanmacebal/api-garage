@@ -34,6 +34,7 @@ LOCAL_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'drf_spectacular',
 ]
 
 INSTALLED_APPS += LOCAL_APPS + THIRD_PARTY_APPS
@@ -53,6 +54,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 ROOT_URLCONF = 'garage.urls'
@@ -126,3 +128,19 @@ AUTH_USER_MODEL = 'users.User'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Swagger settings
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'API Garage',
+    'DESCRIPTION': 'A simple API for garage',
+    'DEFAULT_VERSION': 'v1',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'CONTACT': {
+        'name': 'Juan Manuel Acebal',
+        'email': 'juanm.acebal@gmail.com'
+    },
+    "SWAGGER_UI_SETTINGS": {
+        "persistAuthorization": True,
+    },
+}

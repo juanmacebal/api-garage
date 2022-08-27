@@ -20,6 +20,10 @@ After add or remove a package in Pipfile run the following command to build Pipf
 
 ```pipenv lock```
 
+Update the container
+
+```docker-compose build```
+
 ## Extra documentation
 - Oficial Django documentation [docs.djangoproject.com](https://docs.djangoproject.com/en/4.1/) 
 - Oficial DRF documentation [django-rest-framework.org](https://www.django-rest-framework.org/) 
